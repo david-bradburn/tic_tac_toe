@@ -19,7 +19,7 @@ class board:
             print("\n", end='')
         print("-------------------")
 
-    def check_win(self ,state):
+    def check_win(self, state):
 
         for x in range(self.width):
             count = 0
@@ -77,13 +77,15 @@ class board:
             return
 
         if int(self.array[x - 1][y - 1]) != 0:
-            print("There is already a {} there you cannot place a {} on this spot \n Please choose a different spot\n".format(self.icon[self.array[x - 1][y - 1]], self.icon[symbol]))
+            print("There is already a {} there you cannot place a {} on this spot \n Please choose a different spot\n"
+                  .format(self.icon[self.array[x - 1][y - 1]], self.icon[symbol]))
             return
 
         else:
             self.array[x - 1][y - 1] = symbol
 
             board.check_win(self, symbol)
+
             if self.win_state != 1:
                 if self.state == 1:
                     self.state = 2
@@ -93,13 +95,15 @@ class board:
 
     def input_icon(self):
         try:
-            x = int(input("Please select and x between 1 and {} inclusive". format(self.width)))
+            x = int(input("Player {}, please select a horizontal coordinate between 1 and {} inclusive"
+                          .format(self.icon[self.state], self.width)))
         except:
             print("Please enter an integer")
             return
 
         try:
-            y = int(input("Please select and y between 1 and {} inclusive". format(self.height)))
+            y = int(input("Player {}, please select a vertical coordinate between 1 and {} inclusive"
+                          .format(self.icon[self.state], self.width)))
         except:
             print("Please enter an integer")
             return
